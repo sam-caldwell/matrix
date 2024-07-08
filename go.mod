@@ -4,6 +4,7 @@ go 1.22.4
 
 require (
 	github.com/sam-caldwell/ansi v1.0.0
+	github.com/sam-caldwell/types v1.0.1
 	github.com/stretchr/testify v1.9.0
 	gocv.io/x/gocv v0.37.0
 )
