@@ -6,6 +6,7 @@ import (
 )
 
 func Test_NewMatrix(t *testing.T) {
+
 	t.Run("happy path: simple creation of a matrix", func(t *testing.T) {
 		const (
 			rowSize = 5
@@ -25,6 +26,7 @@ func Test_NewMatrix(t *testing.T) {
 			t.Fatalf("col mismatch.  got: %d", actual)
 		}
 	})
+
 	t.Run("sad path: zero-size matrix should throw error and return nil Matrix pointer", func(t *testing.T) {
 		const (
 			rowSize = 0
@@ -41,4 +43,5 @@ func Test_NewMatrix(t *testing.T) {
 			t.Fatalf("expect nil pointer on error")
 		}
 	})
+
 }
