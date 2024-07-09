@@ -5,10 +5,10 @@ import (
 	"github.com/sam-caldwell/errors"
 )
 
-// Xor - Perform a bitwise XOR operation on two Matrix objects and return the result
+// XOR - Perform a bitwise XOR operation on two Matrix objects and return the result
 //
 //	This supports any int, uint type.
-func (lhs *Matrix[T]) Xor(rhs *Matrix[T]) (result *Matrix[T], err error) {
+func (lhs *Matrix[T]) XOR(rhs *Matrix[T]) (result *Matrix[T], err error) {
 
 	lhs.lock.RLock()
 	defer lhs.lock.RUnlock()
