@@ -21,7 +21,9 @@ func (lhs *Matrix[T]) Multiply(rhs *Matrix[T]) (result *Matrix[T], err error) {
 		return nil, fmt.Errorf(errors.MatrixDimensionMismatch)
 	}
 
-	result = &(Matrix[T]{})
+	if result, err = NewMatrix[T](lhs.rows(), lhs.cols()); err != nil {
+		return nil, err
+	}
 
 	for r := uint(0); r < lhs.rows(); r++ {
 
@@ -35,7 +37,7 @@ func (lhs *Matrix[T]) Multiply(rhs *Matrix[T]) (result *Matrix[T], err error) {
 
 			}
 
-			(*result).data[r][c] = sum
+			(*result).data[c][r] = sum
 
 		}
 
