@@ -10,6 +10,6 @@ func (lhs *Matrix[T]) Get(row, col uint) (T, error) {
 		return 0, err
 	}
 
-	return (*lhs).data[row][col], nil
+	return (*lhs).data[col][row], nil
 
 }
