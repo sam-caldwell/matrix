@@ -1,6 +1,9 @@
 package matrix
 
-import "github.com/sam-caldwell/errors"
+import (
+	"fmt"
+	"github.com/sam-caldwell/errors"
+)
 
 // And - Perform a bitwise AND operation on two Matrix objects and return the result
 //
@@ -17,32 +20,36 @@ func (lhs *Matrix[T]) And(rhs *Matrix[T]) (result *Matrix[T], err error) {
 		return nil, err
 	}
 
+	if result, err = NewMatrix[T](lhs.rows(), lhs.cols()); err != nil {
+		return nil, err
+	}
+
 	for r := uint(0); r < lhs.rows(); r++ {
 
 		for c := uint(0); c < rhs.cols(); c++ {
-			switch v := any((*lhs).data[r][c]).(type) {
+			switch v := any((*lhs).data[c][r]).(type) {
 			case int:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(int)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(int)).(T)
 			case int8:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(int8)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(int8)).(T)
 			case int16:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(int16)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(int16)).(T)
 			case int32:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(int32)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(int32)).(T)
 			case int64:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(int64)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(int64)).(T)
 			case uint:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(uint)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(uint)).(T)
 			case uint8:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(uint8)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(uint8)).(T)
 			case uint16:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(uint16)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(uint16)).(T)
 			case uint32:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(uint32)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(uint32)).(T)
 			case uint64:
-				(*result).data[r][c] = any(v & any((*rhs).data[r][c]).(uint64)).(T)
+				(*result).data[c][r] = any(v & any((*rhs).data[c][r]).(uint64)).(T)
 			default:
-				panic(errors.UnsupportedType)
+				return nil, fmt.Errorf(errors.UnsupportedType)
 			}
 		}
 	}
